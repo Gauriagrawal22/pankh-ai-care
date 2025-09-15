@@ -2,95 +2,104 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* PankhAI Design System - Women's Health App Colors & Gradients */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Base System Colors */
+    --background: 350 20% 99%;
+    --foreground: 240 15% 15%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    /* PankhAI Brand Colors - HSL Format */
+    --pankhai-pink: 330 70% 70%;
+    --pankhai-pink-light: 330 60% 85%;
+    --pankhai-pink-dark: 330 80% 55%;
+    
+    --pankhai-orange: 25 95% 65%;
+    --pankhai-orange-light: 25 85% 80%;
+    --pankhai-orange-dark: 25 100% 50%;
+    
+    --pankhai-purple: 280 60% 70%;
+    --pankhai-purple-light: 280 50% 85%;
+    --pankhai-purple-dark: 280 70% 55%;
+    
+    --pankhai-teal: 180 60% 65%;
+    --pankhai-teal-light: 180 50% 80%;
+    --pankhai-teal-dark: 180 70% 50%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    /* Primary Brand Identity */
+    --primary: 330 70% 70%;
+    --primary-foreground: 0 0% 100%;
+    --primary-light: 330 60% 85%;
+    --primary-dark: 330 80% 55%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Secondary Colors */
+    --secondary: 280 60% 70%;
+    --secondary-foreground: 0 0% 100%;
+    --secondary-light: 280 50% 85%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Accent Colors */
+    --accent: 180 60% 65%;
+    --accent-foreground: 0 0% 100%;
+    --accent-light: 180 50% 80%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    /* Health-focused UI Colors */
+    --wellness: 25 95% 65%;
+    --wellness-foreground: 0 0% 100%;
+    --wellness-light: 25 85% 80%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    /* Neutral System */
+    --card: 350 15% 98%;
+    --card-foreground: 240 15% 15%;
+    --muted: 350 10% 95%;
+    --muted-foreground: 240 10% 45%;
+    --border: 350 15% 90%;
+    --input: 350 15% 96%;
+    --ring: 330 70% 70%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    /* Popover & Dialog */
+    --popover: 350 15% 99%;
+    --popover-foreground: 240 15% 15%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    /* Status Colors */
+    --destructive: 0 75% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --success: 140 60% 50%;
+    --success-foreground: 0 0% 100%;
+    --warning: 45 90% 60%;
+    --warning-foreground: 0 0% 100%;
 
-    --radius: 0.5rem;
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--pankhai-pink)), hsl(var(--pankhai-orange)));
+    --gradient-secondary: linear-gradient(135deg, hsl(var(--pankhai-purple)), hsl(var(--pankhai-teal)));
+    --gradient-wellness: linear-gradient(135deg, hsl(var(--pankhai-teal)), hsl(var(--pankhai-purple)));
+    --gradient-hero: linear-gradient(135deg, hsl(var(--pankhai-pink-light)), hsl(var(--pankhai-orange-light)), hsl(var(--pankhai-purple-light)));
+    --gradient-card: linear-gradient(135deg, hsl(var(--card)) 0%, hsl(350 20% 96%) 100%);
 
-    --sidebar-background: 0 0% 98%;
+    /* Shadows */
+    --shadow-soft: 0 2px 10px -3px hsl(var(--pankhai-pink) / 0.1);
+    --shadow-glow: 0 0 20px hsl(var(--pankhai-pink) / 0.15);
+    --shadow-wellness: 0 4px 20px -4px hsl(var(--pankhai-teal) / 0.2);
 
-    --sidebar-foreground: 240 5.3% 26.1%;
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --radius: 0.75rem;
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    /* Dark mode for PankhAI - Maintaining brand identity */
+    --background: 330 15% 8%;
+    --foreground: 350 20% 95%;
+    --card: 330 10% 12%;
+    --card-foreground: 350 15% 90%;
+    --popover: 330 10% 12%;
+    --popover-foreground: 350 15% 90%;
+    --muted: 330 8% 15%;
+    --muted-foreground: 350 10% 65%;
+    --border: 330 10% 20%;
+    --input: 330 10% 18%;
   }
 }
 
@@ -100,6 +109,61 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans;
+  }
+}
+
+@layer components {
+  /* PankhAI Component Styles */
+  .pankhai-card {
+    @apply bg-gradient-to-br from-card to-card/50 backdrop-blur-sm border border-border/50 rounded-xl shadow-soft transition-all duration-300 hover:shadow-glow hover:border-primary/30;
+  }
+
+  .pankhai-gradient-primary {
+    background: var(--gradient-primary);
+  }
+
+  .pankhai-gradient-secondary {
+    background: var(--gradient-secondary);
+  }
+
+  .pankhai-gradient-wellness {
+    background: var(--gradient-wellness);
+  }
+
+  .pankhai-gradient-hero {
+    background: var(--gradient-hero);
+  }
+
+  .pankhai-button-primary {
+    @apply bg-primary hover:bg-primary/90 text-primary-foreground px-6 py-3 rounded-xl font-medium transition-all duration-300 hover:shadow-glow hover:scale-105;
+  }
+
+  .pankhai-button-secondary {
+    @apply bg-secondary hover:bg-secondary/90 text-secondary-foreground px-6 py-3 rounded-xl font-medium transition-all duration-300 hover:shadow-wellness;
+  }
+
+  .pankhai-button-wellness {
+    @apply bg-wellness hover:bg-wellness/90 text-wellness-foreground px-6 py-3 rounded-xl font-medium transition-all duration-300;
+  }
+
+  .pankhai-input {
+    @apply bg-input border border-border rounded-xl px-4 py-3 focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all duration-300;
+  }
+
+  .pankhai-nav-item {
+    @apply flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 hover:bg-primary/10 hover:text-primary;
+  }
+
+  .pankhai-nav-item.active {
+    @apply bg-primary text-primary-foreground shadow-soft;
+  }
+
+  .pankhai-metric-card {
+    @apply pankhai-card p-6 hover:scale-105 cursor-pointer;
+  }
+
+  .pankhai-chart-container {
+    @apply pankhai-card p-6 h-64;
   }
 }

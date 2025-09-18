@@ -1,18 +1,24 @@
 import React, { useState } from 'react';
-import { Home, Calendar, Activity, FileText, Settings, TrendingUp, Heart } from 'lucide-react';
+import { Home, Calendar, Activity, FileText, Settings, TrendingUp, Heart, Apple, Smile, Watch, Globe } from 'lucide-react';
 import { Card } from '@/components/ui/card';
+import { useNavigate } from 'react-router-dom';
 
 const Navigation = () => {
   const [activeItem, setActiveItem] = useState('dashboard');
+  const [language, setLanguage] = useState('english');
+  const navigate = useNavigate();
 
   const navItems = [
-    { id: 'dashboard', label: 'Dashboard', icon: Home },
-    { id: 'cycle', label: 'Cycle Tracking', icon: Calendar },
-    { id: 'symptoms', label: 'Symptoms', icon: Activity },
-    { id: 'insights', label: 'AI Insights', icon: TrendingUp },
-    { id: 'reports', label: 'Reports', icon: FileText },
-    { id: 'wellness', label: 'Wellness', icon: Heart },
-    { id: 'settings', label: 'Settings', icon: Settings },
+    { id: 'dashboard', label: 'Dashboard', icon: Home, path: '/dashboard' },
+    { id: 'cycle', label: 'Cycle Tracking', icon: Calendar, path: '/cycle-tracking' },
+    { id: 'symptoms', label: 'Symptoms', icon: Activity, path: '/symptoms' },
+    { id: 'insights', label: 'AI Insights', icon: TrendingUp, path: '/ai-insights' },
+    { id: 'diet', label: 'Diet & Nutrition', icon: Apple, path: '/diet' },
+    { id: 'mood', label: 'Mood & Energy', icon: Smile, path: '/mood-energy' },
+    { id: 'wearables', label: 'Wearables', icon: Watch, path: '/wearables' },
+    { id: 'reports', label: 'Reports', icon: FileText, path: '/reports' },
+    { id: 'wellness', label: 'Wellness', icon: Heart, path: '/wellness' },
+    { id: 'settings', label: 'Settings', icon: Settings, path: '/settings' },
   ];
 
   return (
@@ -26,7 +32,10 @@ const Navigation = () => {
             return (
               <button
                 key={item.id}
-                onClick={() => setActiveItem(item.id)}
+                onClick={() => {
+                  setActiveItem(item.id);
+                  if (item.path) navigate(item.path);
+                }}
                 className={`pankhai-nav-item w-full text-left ${
                   isActive ? 'active' : ''
                 }`}
@@ -40,12 +49,29 @@ const Navigation = () => {
         
         {/* Language Switcher */}
         <div className="mt-8 pt-6 border-t border-border">
-          <p className="text-sm text-muted-foreground mb-3">Language</p>
+          <p className="text-sm text-muted-foreground mb-3 flex items-center gap-2">
+            <Globe className="w-4 h-4" />
+            Language
+          </p>
           <div className="flex gap-2">
-            <button className="px-3 py-1 text-xs rounded-lg bg-primary text-primary-foreground">
+            <button 
+              onClick={() => setLanguage('english')}
+              className={`px-3 py-1 text-xs rounded-lg transition-colors ${
+                language === 'english' 
+                  ? 'bg-primary text-primary-foreground' 
+                  : 'bg-muted text-muted-foreground hover:bg-primary hover:text-primary-foreground'
+              }`}
+            >
               English
             </button>
-            <button className="px-3 py-1 text-xs rounded-lg bg-muted text-muted-foreground hover:bg-primary hover:text-primary-foreground transition-colors">
+            <button 
+              onClick={() => setLanguage('hindi')}
+              className={`px-3 py-1 text-xs rounded-lg transition-colors ${
+                language === 'hindi' 
+                  ? 'bg-primary text-primary-foreground' 
+                  : 'bg-muted text-muted-foreground hover:bg-primary hover:text-primary-foreground'
+              }`}
+            >
               हिंदी
             </button>
           </div>

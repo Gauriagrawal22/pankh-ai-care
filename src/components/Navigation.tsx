@@ -16,6 +16,7 @@ const Navigation = () => {
     { id: 'diet', label: 'Diet & Nutrition', icon: Apple, path: '/diet' },
     { id: 'mood', label: 'Mood & Energy', icon: Smile, path: '/mood-energy' },
     { id: 'wearables', label: 'Wearables', icon: Watch, path: '/wearables' },
+    { id: 'games', label: 'Games', icon: TrendingUp, path: '/games' },
     { id: 'reports', label: 'Reports', icon: FileText, path: '/reports' },
     { id: 'wellness', label: 'Wellness', icon: Heart, path: '/wellness' },
     { id: 'settings', label: 'Settings', icon: Settings, path: '/settings' },

@@ -13,6 +13,10 @@ import AIInsights from "./pages/AIInsights";
 import Diet from "./pages/Diet";
 import MoodEnergy from "./pages/MoodEnergy";
 import Wearables from "./pages/Wearables";
+import Games from "./pages/Games";
+import Reports from "./pages/Reports";
+import Wellness from "./pages/Wellness";
+import Settings from "./pages/Settings";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -35,6 +39,10 @@ const App = () => (
           <Route path="/diet" element={<Diet />} />
           <Route path="/mood-energy" element={<MoodEnergy />} />
           <Route path="/wearables" element={<Wearables />} />
+          <Route path="/games" element={<Games />} />
+          <Route path="/reports" element={<Reports />} />
+          <Route path="/wellness" element={<Wellness />} />
+          <Route path="/settings" element={<Settings />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

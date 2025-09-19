@@ -62,7 +62,7 @@ const Dashboard = () => {
                 <Plus className="w-4 h-4 mr-2" />
                 Log Symptoms
               </Button>
-              <Button variant="outline" size="lg" className="border-white/30 text-white hover:bg-white/10">
+              <Button variant="hero" size="lg" className="border-white/30 text-white hover:bg-white/10">
                 View Insights
               </Button>
             </div>

@@ -58,11 +58,21 @@ const Dashboard = () => {
               Your cycle is due in 3 days. Energy levels look great today!
             </p>
             <div className="flex justify-center gap-3">
-              <Button variant="hero" size="lg" className="animate-wellness-bounce">
+              <Button 
+                variant="hero" 
+                size="lg" 
+                className="animate-wellness-bounce"
+                onClick={() => window.location.href = '/symptoms'}
+              >
                 <Plus className="w-4 h-4 mr-2" />
                 Log Symptoms
               </Button>
-              <Button variant="hero" size="lg" className="border-white/30 text-white hover:bg-white/10">
+              <Button 
+                variant="hero" 
+                size="lg" 
+                className="border-white/30 text-white hover:bg-white/10"
+                onClick={() => window.location.href = '/ai-insights'}
+              >
                 View Insights
               </Button>
             </div>
@@ -125,7 +135,11 @@ const Dashboard = () => {
           <p className="text-white/90 text-sm mb-4">
             Cycle due in 3 days. Great energy today!
           </p>
-          <Button variant="hero" size="sm">
+          <Button 
+            variant="hero" 
+            size="sm"
+            onClick={() => window.location.href = '/symptoms'}
+          >
             <Plus className="w-4 h-4 mr-2" />
             Log Now
           </Button>

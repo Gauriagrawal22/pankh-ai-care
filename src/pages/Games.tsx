@@ -4,12 +4,31 @@ import { Button } from '@/components/ui/button';
 import { Play, RotateCcw } from 'lucide-react';
 import Navigation from '@/components/Navigation';
 import { SpinWheel } from '@/components/SpinWheel';
+import { BreathingGame } from '@/components/BreathingGame';
 
 const Games = () => {
   const [showSpinWheel, setShowSpinWheel] = useState(false);
+  const [showBreathingGame, setShowBreathingGame] = useState(false);
 
   return (
     <div className="min-h-screen bg-gradient-subtle">
+      {/* Header */}
+      <header className="pankhai-card mx-6 mt-6 mb-8">
+        <div className="flex items-center justify-between p-6">
+          <div className="flex items-center gap-4">
+            <div className="w-12 h-12 bg-gradient-primary rounded-xl flex items-center justify-center">
+              <Play className="w-6 h-6 text-white" />
+            </div>
+            <div>
+              <h1 className="text-2xl font-bold bg-gradient-primary bg-clip-text text-transparent">
+                पंखAI
+              </h1>
+              <p className="text-sm text-muted-foreground">Your wellness companion</p>
+            </div>
+          </div>
+        </div>
+      </header>
+
       <div className="flex">
         <Navigation />
         
@@ -32,6 +51,17 @@ const Games = () => {
                   ← Back to Games
                 </Button>
                 <SpinWheel />
+              </div>
+            ) : showBreathingGame ? (
+              <div className="mb-6">
+                <Button 
+                  onClick={() => setShowBreathingGame(false)}
+                  variant="outline"
+                  className="mb-4"
+                >
+                  ← Back to Games
+                </Button>
+                <BreathingGame />
               </div>
             ) : (
               <div className="grid md:grid-cols-2 gap-6">
@@ -79,6 +109,7 @@ const Games = () => {
                       <div className="text-sm text-muted-foreground">Sessions completed: 🧘‍♀️ 15</div>
                     </div>
                     <Button 
+                      onClick={() => setShowBreathingGame(true)}
                       variant="secondary" 
                       size="lg"
                       className="w-full"
@@ -92,7 +123,7 @@ const Games = () => {
             )}
 
             {/* Challenge Progress */}
-            {!showSpinWheel && (
+            {!showSpinWheel && !showBreathingGame && (
               <div className="mt-8">
                 <Card className="pankhai-card">
                   <CardHeader>

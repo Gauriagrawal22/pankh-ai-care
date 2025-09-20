@@ -48,9 +48,9 @@ const CycleTracking = () => {
             </div>
             <div>
               <h1 className="text-2xl font-bold bg-gradient-primary bg-clip-text text-transparent">
-                Cycle Tracking
+                पंखAI
               </h1>
-              <p className="text-sm text-muted-foreground">Track your menstrual cycle and patterns</p>
+              <p className="text-sm text-muted-foreground">Cycle Tracking</p>
             </div>
           </div>
           <Button variant="wellness" size="sm">

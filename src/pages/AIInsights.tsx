@@ -59,9 +59,9 @@ const AIInsights = () => {
             </div>
             <div>
               <h1 className="text-2xl font-bold bg-gradient-primary bg-clip-text text-transparent">
-                AI Insights
+                पंखAI
               </h1>
-              <p className="text-sm text-muted-foreground">Personalized health insights powered by AI</p>
+              <p className="text-sm text-muted-foreground">AI Insights</p>
             </div>
           </div>
           <Button variant="wellness" size="sm">

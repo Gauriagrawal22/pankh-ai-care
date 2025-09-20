@@ -52,9 +52,9 @@ const Symptoms = () => {
             </div>
             <div>
               <h1 className="text-2xl font-bold bg-gradient-primary bg-clip-text text-transparent">
-                Symptom Tracking
+                पंखAI
               </h1>
-              <p className="text-sm text-muted-foreground">Log and monitor your daily symptoms</p>
+              <p className="text-sm text-muted-foreground">Symptom Tracking</p>
             </div>
           </div>
           <Button variant="wellness" size="sm">

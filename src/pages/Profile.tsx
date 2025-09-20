@@ -41,9 +41,9 @@ const Profile = () => {
             </div>
             <div>
               <h1 className="text-2xl font-bold bg-gradient-primary bg-clip-text text-transparent">
-                Profile Settings
+                पंखAI
               </h1>
-              <p className="text-sm text-muted-foreground">Manage your account and preferences</p>
+              <p className="text-sm text-muted-foreground">Profile Settings</p>
             </div>
           </div>
         </div>

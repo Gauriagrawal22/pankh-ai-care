@@ -70,9 +70,9 @@ const Wearables = () => {
             </div>
             <div>
               <h1 className="text-2xl font-bold bg-gradient-primary bg-clip-text text-transparent">
-                Wearable Devices
+                पंखAI
               </h1>
-              <p className="text-sm text-muted-foreground">Connect your smartwatch or fitness app for better insights</p>
+              <p className="text-sm text-muted-foreground">Wearable Devices</p>
             </div>
           </div>
         </div>

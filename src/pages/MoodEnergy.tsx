@@ -49,9 +49,9 @@ const MoodEnergy = () => {
             </div>
             <div>
               <h1 className="text-2xl font-bold bg-gradient-primary bg-clip-text text-transparent">
-                Mood & Energy
+                पंखAI
               </h1>
-              <p className="text-sm text-muted-foreground">Track your emotional and energy patterns</p>
+              <p className="text-sm text-muted-foreground">Mood & Energy</p>
             </div>
           </div>
         </div>

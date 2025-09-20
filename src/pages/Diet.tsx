@@ -84,9 +84,9 @@ const Diet = () => {
             </div>
             <div>
               <h1 className="text-2xl font-bold bg-gradient-primary bg-clip-text text-transparent">
-                Diet & Nutrition
+                पंखAI
               </h1>
-              <p className="text-sm text-muted-foreground">Personalized nutrition for hormonal health</p>
+              <p className="text-sm text-muted-foreground">Diet & Nutrition</p>
             </div>
           </div>
           <Button variant="wellness" size="sm">

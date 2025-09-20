@@ -4,6 +4,29 @@ import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 
 const QuickActions = () => {
+  const handleActionClick = (actionId: string) => {
+    switch (actionId) {
+      case 'symptoms':
+        window.location.href = '/symptoms';
+        break;
+      case 'photo':
+        console.log('Photo log clicked');
+        break;
+      case 'temperature':
+        console.log('Temperature clicked');
+        break;
+      case 'exercise':
+        console.log('Exercise clicked');
+        break;
+      case 'nutrition':
+        console.log('Nutrition clicked');
+        break;
+      case 'medication':
+        console.log('Medication clicked');
+        break;
+    }
+  };
+
   const actions = [
     {
       id: 'symptoms',
@@ -71,6 +94,7 @@ const QuickActions = () => {
           return (
             <Card
               key={action.id}
+              onClick={() => handleActionClick(action.id)}
               className="p-6 hover:scale-105 transition-all duration-300 cursor-pointer border border-border/50 hover:border-primary/30 hover:shadow-glow animate-fade-in-up"
               style={{ animationDelay: `${index * 50}ms` }}
             >

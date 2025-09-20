@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import loginBg from '@/assets/login-bg.jpg';
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -22,8 +23,19 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-hero flex items-center justify-center p-4">
-      <Card className="w-full max-w-md pankhai-card p-8">
+    <div className="min-h-screen relative flex items-center justify-center p-4">
+      {/* Background Image */}
+      <div className="absolute inset-0 z-0">
+        <img 
+          src={loginBg} 
+          alt="Wellness Background"
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-hero opacity-80"></div>
+      </div>
+      
+      {/* Content */}
+      <Card className="w-full max-w-md pankhai-card p-8 relative z-10 backdrop-blur-sm bg-card/90">
         <div className="text-center mb-8">
           <div className="w-16 h-16 bg-gradient-primary rounded-xl flex items-center justify-center mx-auto mb-4">
             <Heart className="w-8 h-8 text-white" />

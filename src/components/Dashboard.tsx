@@ -1,5 +1,5 @@
 import React from 'react';
-import { Calendar, Heart, Moon, Droplets, Activity, Bell, Plus } from 'lucide-react';
+import { Calendar, Moon, Droplets, Activity, Bell, Plus } from 'lucide-react';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import Navigation from './Navigation';
@@ -8,6 +8,7 @@ import CycleChart from './CycleChart';
 import QuickActions from './QuickActions';
 import RecentInsights from './RecentInsights';
 import MobileLayout from './MobileLayout';
+import pankhaiLogo from '@/assets/pankhai-logo-whitebg.png';
 import heroImage from '@/assets/pankhai-hero.jpg';
 
 const Dashboard = () => {
@@ -17,14 +18,14 @@ const Dashboard = () => {
       <header className="pankhai-card mx-6 mt-6 mb-8">
         <div className="flex items-center justify-between p-6">
           <div className="flex items-center gap-4">
-            <div className="w-12 h-12 bg-gradient-primary rounded-xl flex items-center justify-center">
-              <Heart className="w-6 h-6 text-white" />
+            <div className="w-12 h-12 rounded-xl flex items-center justify-center overflow-hidden">
+              <img src={pankhaiLogo} alt="PankhAI Logo" className="w-12 h-12 object-contain" />
             </div>
             <div>
-              <h1 className="text-2xl font-bold bg-gradient-primary bg-clip-text text-transparent">
-                पंखAI
+              <h1 className="text-2xl font-bold text-gray-900 dark:text-white">
+                PankhAI
               </h1>
-              <p className="text-sm text-muted-foreground">Your wellness companion</p>
+              <p className="text-sm text-gray-700 dark:text-gray-300 font-medium">Your AI wellness companion</p>
             </div>
           </div>
           <div className="flex items-center gap-3">
@@ -51,10 +52,10 @@ const Dashboard = () => {
             className="absolute inset-0 w-full h-48 object-cover mix-blend-soft-light"
           />
           <div className="relative p-8 text-center">
-            <h2 className="text-3xl font-bold text-white mb-3">
+            <h2 className="text-3xl font-bold text-white mb-3 drop-shadow-lg">
               Hello, Priya! 👋
             </h2>
-            <p className="text-white/90 mb-6 max-w-md mx-auto">
+            <p className="text-white/95 mb-6 max-w-md mx-auto text-lg drop-shadow-md">
               Your cycle is due in 3 days. Energy levels look great today!
             </p>
             <div className="flex justify-center gap-3">

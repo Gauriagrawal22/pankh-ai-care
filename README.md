@@ -1,22 +1,25 @@
-# Welcome to your Lovable project
+# PankhAI - AI-Powered Women's Health Companion
 
-## Project info
+## Project Overview
 
-**URL**: https://lovable.dev/projects/f550c8aa-9fee-4fc3-8211-cef803bd5961
+PankhAI is a comprehensive women's health tracking and wellness application that provides personalized AI guidance for hormonal health, PCOS management, thyroid monitoring, and menstrual cycle tracking with intelligent insights.
 
-## How can I edit this code?
+## Features
 
-There are several ways of editing your application.
+- 🏥 **Health Dashboard** - Comprehensive health metrics and insights
+- 📊 **Cycle Tracking** - Advanced menstrual cycle monitoring
+- 🤖 **AI Insights** - Personalized health recommendations
+- 😊 **Mood & Energy** - Emotional wellness tracking
+- 🍎 **Diet & Nutrition** - Meal planning and nutrition guidance
+- 🎮 **Wellness Games** - Interactive breathing exercises and relaxation
+- 📱 **Wearable Integration** - Connect with fitness devices
+- 📈 **Reports** - Detailed health analytics
 
-**Use Lovable**
+## Getting Started
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/f550c8aa-9fee-4fc3-8211-cef803bd5961) and start prompting.
+**Local Development**
 
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+To run this application locally:
 
 The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
 
@@ -60,14 +63,18 @@ This project is built with:
 - shadcn-ui
 - Tailwind CSS
 
-## How can I deploy this project?
+## Deployment
 
-Simply open [Lovable](https://lovable.dev/projects/f550c8aa-9fee-4fc3-8211-cef803bd5961) and click on Share -> Publish.
+This project can be deployed to various platforms:
 
-## Can I connect a custom domain to my Lovable project?
+- **Vercel**: Connect your GitHub repository for automatic deployments
+- **Netlify**: Deploy directly from your repository
+- **GitHub Pages**: Use GitHub Actions for automated deployment
 
-Yes, you can!
+## Contributing
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+Contributions are welcome! Please feel free to submit a Pull Request.
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+## License
+
+This project is open source and available under the MIT License.

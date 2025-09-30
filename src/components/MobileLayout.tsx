@@ -2,6 +2,7 @@ import React from 'react';
 import { Home, Calendar, Activity, TrendingUp, User, Plus } from 'lucide-react';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import pankhaiLogo from '@/assets/pankhai-logo-whitebg.png';
 
 const MobileLayout = ({ children }: { children: React.ReactNode }) => {
   const bottomNavItems = [
@@ -18,10 +19,10 @@ const MobileLayout = ({ children }: { children: React.ReactNode }) => {
       <header className="sticky top-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="flex items-center justify-between p-4 border-b border-border">
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 bg-gradient-primary rounded-lg flex items-center justify-center">
-              <span className="text-white text-sm font-bold">प</span>
+            <div className="w-8 h-8 rounded-lg flex items-center justify-center shadow-md overflow-hidden">
+              <img src={pankhaiLogo} alt="PankhAI Logo" className="w-8 h-8 object-contain" />
             </div>
-            <h1 className="text-lg font-bold bg-gradient-primary bg-clip-text text-transparent">
+            <h1 className="text-lg font-bold text-gray-900 dark:text-white">
               PankhAI
             </h1>
           </div>

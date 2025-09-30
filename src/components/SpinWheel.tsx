@@ -115,7 +115,7 @@ export const SpinWheel = () => {
             {/* Wheel */}
             <div 
               ref={wheelRef}
-              className="relative w-80 h-80 rounded-full overflow-hidden shadow-xl border-4 border-primary/20 transition-transform duration-[3000ms] ease-out"
+              className="relative w-80 h-80 rounded-full overflow-hidden shadow-xl border-4 border-primary/20 spin-wheel-animation"
               style={{ transform: `rotate(${rotation}deg)` }}
             >
               {challenges.map((challenge, index) => {

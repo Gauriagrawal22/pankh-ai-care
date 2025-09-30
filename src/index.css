@@ -166,4 +166,9 @@
   .pankhai-chart-container {
     @apply pankhai-card p-6 h-64;
   }
+
+  /* Custom spin wheel animation */
+  .spin-wheel-animation {
+    transition: transform 3000ms ease-out;
+  }
 }

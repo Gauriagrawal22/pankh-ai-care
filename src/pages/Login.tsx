@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Eye, EyeOff, Heart } from 'lucide-react';
+import { Eye, EyeOff } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import pankhaiLogo from '@/assets/pankhai-logo-main.png';
 import loginBg from '@/assets/login-bg.jpg';
 
 const Login = () => {
@@ -37,13 +38,13 @@ const Login = () => {
       {/* Content */}
       <Card className="w-full max-w-md pankhai-card p-8 relative z-10 backdrop-blur-sm bg-card/90">
         <div className="text-center mb-8">
-          <div className="w-16 h-16 bg-gradient-primary rounded-xl flex items-center justify-center mx-auto mb-4">
-            <Heart className="w-8 h-8 text-white" />
+          <div className="w-16 h-16 rounded-xl flex items-center justify-center mx-auto mb-4 shadow-xl bg-white/10 backdrop-blur-sm overflow-hidden">
+            <img src={pankhaiLogo} alt="PankhAI Logo" className="w-14 h-14 object-contain" />
           </div>
-          <h1 className="text-3xl font-bold bg-gradient-primary bg-clip-text text-transparent mb-2">
-            पंखAI
+          <h1 className="text-3xl font-bold text-white drop-shadow-2xl mb-2">
+            PankhAI
           </h1>
-          <p className="text-muted-foreground">Welcome back to your wellness journey</p>
+          <p className="text-white drop-shadow-lg font-semibold">Welcome back to your wellness journey</p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-6">

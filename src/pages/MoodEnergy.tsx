@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Heart, Smile, Frown, Meh, Battery, Sun, Moon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import BackButton from '@/components/BackButton';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Slider } from '@/components/ui/slider';
 import Navigation from '@/components/Navigation';

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Home, Calendar, Activity, FileText, Settings, TrendingUp, Heart, Apple, Smile, Watch, Globe } from 'lucide-react';
 import { Card } from '@/components/ui/card';
+import { ThemeToggle } from './ThemeToggle';
 import { useNavigate } from 'react-router-dom';
 
 const Navigation = () => {
@@ -48,33 +49,42 @@ const Navigation = () => {
           })}
         </nav>
         
-        {/* Language Switcher */}
-        <div className="mt-8 pt-6 border-t border-border">
-          <p className="text-sm text-muted-foreground mb-3 flex items-center gap-2">
-            <Globe className="w-4 h-4" />
-            Language
-          </p>
-          <div className="flex gap-2">
-            <button 
-              onClick={() => setLanguage('english')}
-              className={`px-3 py-1 text-xs rounded-lg transition-colors ${
-                language === 'english' 
-                  ? 'bg-primary text-primary-foreground' 
-                  : 'bg-muted text-muted-foreground hover:bg-primary hover:text-primary-foreground'
-              }`}
-            >
-              English
-            </button>
-            <button 
-              onClick={() => setLanguage('hindi')}
-              className={`px-3 py-1 text-xs rounded-lg transition-colors ${
-                language === 'hindi' 
-                  ? 'bg-primary text-primary-foreground' 
-                  : 'bg-muted text-muted-foreground hover:bg-primary hover:text-primary-foreground'
-              }`}
-            >
-              हिंदी
-            </button>
+        {/* Theme & Language Switcher */}
+        <div className="mt-8 pt-6 border-t border-border space-y-6">
+          {/* Theme Toggle */}
+          <div>
+            <p className="text-sm text-muted-foreground mb-3">Theme</p>
+            <ThemeToggle />
+          </div>
+          
+          {/* Language Switcher */}
+          <div>
+            <p className="text-sm text-muted-foreground mb-3 flex items-center gap-2">
+              <Globe className="w-4 h-4" />
+              Language
+            </p>
+            <div className="flex gap-2">
+              <button 
+                onClick={() => setLanguage('english')}
+                className={`px-3 py-1 text-xs rounded-lg transition-colors ${
+                  language === 'english' 
+                    ? 'bg-primary text-primary-foreground' 
+                    : 'bg-muted text-muted-foreground hover:bg-primary hover:text-primary-foreground'
+                }`}
+              >
+                English
+              </button>
+              <button 
+                onClick={() => setLanguage('hindi')}
+                className={`px-3 py-1 text-xs rounded-lg transition-colors ${
+                  language === 'hindi' 
+                    ? 'bg-primary text-primary-foreground' 
+                    : 'bg-muted text-muted-foreground hover:bg-primary hover:text-primary-foreground'
+                }`}
+              >
+                हिंदी
+              </button>
+            </div>
           </div>
         </div>
       </Card>

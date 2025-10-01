@@ -2,8 +2,11 @@ import React from 'react';
 import { Calendar, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import { useNavigate } from 'react-router-dom';
 
 const CycleChart = () => {
+  const navigate = useNavigate();
+  
   // Mock cycle data
   const days = Array.from({ length: 28 }, (_, i) => i + 1);
   const currentDay = 12;
@@ -30,16 +33,32 @@ const CycleChart = () => {
   return (
     <Card className="pankhai-chart-container">
       <div className="flex items-center justify-between mb-6">
-        <div className="flex items-center gap-3">
+        <div 
+          className="flex items-center gap-3 cursor-pointer hover:text-primary transition-colors"
+          onClick={() => navigate('/cycle-tracking')}
+        >
           <Calendar className="w-5 h-5 text-primary" />
           <h3 className="text-lg font-semibold">Cycle Calendar</h3>
         </div>
         <div className="flex items-center gap-2">
-          <Button size="sm" variant="ghost">
+          <Button 
+            size="sm" 
+            variant="ghost"
+            onClick={() => navigate('/cycle-tracking')}
+          >
             <ChevronLeft className="w-4 h-4" />
           </Button>
-          <span className="text-sm font-medium px-3">December 2024</span>
-          <Button size="sm" variant="ghost">
+          <span 
+            className="text-sm font-medium px-3 cursor-pointer hover:text-primary transition-colors"
+            onClick={() => navigate('/cycle-tracking')}
+          >
+            December 2024
+          </span>
+          <Button 
+            size="sm" 
+            variant="ghost"
+            onClick={() => navigate('/cycle-tracking')}
+          >
             <ChevronRight className="w-4 h-4" />
           </Button>
         </div>
@@ -55,6 +74,7 @@ const CycleChart = () => {
           return (
             <div
               key={day}
+              onClick={() => navigate('/cycle-tracking')}
               className={`
                 w-8 h-8 rounded-lg flex items-center justify-center text-xs font-medium
                 transition-all duration-200 hover:scale-110 cursor-pointer

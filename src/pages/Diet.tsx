@@ -6,6 +6,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Badge } from '@/components/ui/badge';
 import Navigation from '@/components/Navigation';
 import MobileLayout from '@/components/MobileLayout';
+import BackButton from '@/components/BackButton';
 
 const Diet = () => {
   const [selectedMeals, setSelectedMeals] = useState<string[]>([]);
@@ -79,6 +80,7 @@ const Diet = () => {
       <header className="pankhai-card mx-6 mt-6 mb-8">
         <div className="flex items-center justify-between p-6">
           <div className="flex items-center gap-4">
+            <BackButton />
             <div className="w-12 h-12 bg-gradient-primary rounded-xl flex items-center justify-center">
               <Apple className="w-6 h-6 text-white" />
             </div>

@@ -2,8 +2,11 @@ import React from 'react';
 import { Brain, TrendingUp, AlertCircle, CheckCircle } from 'lucide-react';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import { useNavigate } from 'react-router-dom';
 
 const RecentInsights = () => {
+  const navigate = useNavigate();
+  
   const insights = [
     {
       id: 1,
@@ -106,7 +109,10 @@ const RecentInsights = () => {
                     <span className="text-xs text-muted-foreground">
                       {insight.timestamp}
                     </span>
-                    <button className="text-xs text-primary hover:text-primary/80 font-medium">
+                    <button 
+                      className="text-xs text-primary hover:text-primary/80 font-medium"
+                      onClick={() => navigate('/ai-insights')}
+                    >
                       Learn more →
                     </button>
                   </div>
@@ -118,7 +124,10 @@ const RecentInsights = () => {
       </div>
       
       <div className="mt-6 text-center">
-        <button className="text-sm text-primary hover:text-primary/80 font-medium">
+        <button 
+          className="text-sm text-primary hover:text-primary/80 font-medium"
+          onClick={() => navigate('/ai-insights')}
+        >
           View all insights
         </button>
       </div>

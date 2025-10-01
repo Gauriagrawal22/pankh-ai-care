@@ -1,7 +1,29 @@
 import React from 'react';
 import { TrendingUp, TrendingDown, Minus, Calendar, Droplets, Moon, Zap } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 const HealthMetrics = () => {
+  const navigate = useNavigate();
+  
+  const handleMetricClick = (metricId: string) => {
+    switch (metricId) {
+      case 'cycle':
+        navigate('/cycle-tracking');
+        break;
+      case 'flow':
+        navigate('/cycle-tracking');
+        break;
+      case 'sleep':
+        navigate('/wellness');
+        break;
+      case 'energy':
+        navigate('/mood-energy');
+        break;
+      default:
+        navigate('/dashboard');
+    }
+  };
+  
   const metrics = [
     {
       id: 'cycle',
@@ -66,8 +88,9 @@ const HealthMetrics = () => {
           return (
             <div
               key={metric.id}
-              className="pankhai-metric-card animate-fade-in-up"
-              style={{ animationDelay: `${index * 100}ms` }}
+              onClick={() => handleMetricClick(metric.id)}
+              className={`pankhai-metric-card animate-fade-in-up cursor-pointer hover:scale-105 hover:shadow-lg transition-all duration-300`}
+              data-delay={index * 100}
             >
               <div className="flex items-start justify-between mb-4">
                 <div className={`w-12 h-12 rounded-xl ${metric.bg} flex items-center justify-center shadow-soft`}>

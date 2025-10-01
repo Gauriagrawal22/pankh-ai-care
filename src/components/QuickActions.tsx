@@ -10,19 +10,19 @@ const QuickActions = () => {
         window.location.href = '/symptoms';
         break;
       case 'photo':
-        console.log('Photo log clicked');
+        window.location.href = '/symptoms'; // Photo logging in symptoms page
         break;
       case 'temperature':
-        console.log('Temperature clicked');
+        window.location.href = '/cycle-tracking'; // Temperature tracking
         break;
       case 'exercise':
-        console.log('Exercise clicked');
+        window.location.href = '/wellness'; // Exercise in wellness
         break;
       case 'nutrition':
-        console.log('Nutrition clicked');
+        window.location.href = '/diet'; // Nutrition page
         break;
       case 'medication':
-        console.log('Medication clicked');
+        window.location.href = '/symptoms'; // Medication in symptoms
         break;
     }
   };
@@ -82,7 +82,12 @@ const QuickActions = () => {
     <section>
       <div className="flex items-center justify-between mb-6">
         <h2 className="text-xl font-semibold">Quick Actions</h2>
-        <Button variant="ghost" size="sm" className="text-primary">
+        <Button 
+          variant="ghost" 
+          size="sm" 
+          className="text-primary"
+          onClick={() => window.location.href = '/symptoms'}
+        >
           View all
         </Button>
       </div>

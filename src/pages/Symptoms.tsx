@@ -5,8 +5,10 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import Navigation from '@/components/Navigation';
 import MobileLayout from '@/components/MobileLayout';
+import BackButton from '@/components/BackButton';
 
 const Symptoms = () => {
+  const navigate = useNavigate();
   const [selectedSymptoms, setSelectedSymptoms] = useState<string[]>([]);
 
   const symptomCategories = {
@@ -47,6 +49,7 @@ const Symptoms = () => {
       <header className="pankhai-card mx-6 mt-6 mb-8">
         <div className="flex items-center justify-between p-6">
           <div className="flex items-center gap-4">
+            <BackButton />
             <div className="w-12 h-12 bg-gradient-primary rounded-xl flex items-center justify-center">
               <Activity className="w-6 h-6 text-white" />
             </div>
@@ -161,6 +164,9 @@ const Symptoms = () => {
 
   const MobileSymptoms = () => (
     <div className="p-4 space-y-6">
+      <div className="mb-4">
+        <BackButton />
+      </div>
       <Card className="pankhai-card p-4">
         <h3 className="font-semibold mb-4">Quick Log</h3>
         <div className="grid grid-cols-2 gap-2">

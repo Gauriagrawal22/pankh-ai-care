@@ -2,15 +2,19 @@ import React from 'react';
 import { Home, Calendar, Activity, TrendingUp, User, Plus } from 'lucide-react';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import pankhaiLogo from '@/assets/pankhai-logo-whitebg.png';
+import { ThemeToggle } from './ThemeToggle';
+import { AdaptiveLogo } from './AdaptiveLogo';
+import { useNavigate } from 'react-router-dom';
 
 const MobileLayout = ({ children }: { children: React.ReactNode }) => {
+  const navigate = useNavigate();
+  
   const bottomNavItems = [
-    { id: 'home', icon: Home, label: 'Home' },
-    { id: 'cycle', icon: Calendar, label: 'Cycle' },
-    { id: 'log', icon: Plus, label: 'Log' },
-    { id: 'insights', icon: TrendingUp, label: 'Insights' },
-    { id: 'profile', icon: User, label: 'Profile' },
+    { id: 'home', icon: Home, label: 'Home', path: '/dashboard' },
+    { id: 'cycle', icon: Calendar, label: 'Cycle', path: '/cycle-tracking' },
+    { id: 'log', icon: Plus, label: 'Log', path: '/symptoms' },
+    { id: 'insights', icon: TrendingUp, label: 'Insights', path: '/ai-insights' },
+    { id: 'profile', icon: User, label: 'Profile', path: '/profile' },
   ];
 
   return (
@@ -20,15 +24,23 @@ const MobileLayout = ({ children }: { children: React.ReactNode }) => {
         <div className="flex items-center justify-between p-4 border-b border-border">
           <div className="flex items-center gap-3">
             <div className="w-8 h-8 rounded-lg flex items-center justify-center shadow-md overflow-hidden">
-              <img src={pankhaiLogo} alt="PankhAI Logo" className="w-8 h-8 object-contain" />
+              <AdaptiveLogo className="w-8 h-8" />
             </div>
             <h1 className="text-lg font-bold text-gray-900 dark:text-white">
               PankhAI
             </h1>
           </div>
-          <Button size="sm" variant="ghost" className="w-8 h-8 p-0">
-            <div className="w-6 h-6 bg-gradient-secondary rounded-full"></div>
-          </Button>
+          <div className="flex items-center gap-2">
+            <ThemeToggle />
+            <Button 
+              size="sm" 
+              variant="ghost" 
+              className="w-8 h-8 p-0"
+              onClick={() => navigate('/profile')}
+            >
+              <div className="w-6 h-6 bg-gradient-secondary rounded-full"></div>
+            </Button>
+          </div>
         </div>
       </header>
 
@@ -47,6 +59,7 @@ const MobileLayout = ({ children }: { children: React.ReactNode }) => {
             return (
               <button
                 key={item.id}
+                onClick={() => navigate(item.path)}
                 className={`flex flex-col items-center gap-1 p-2 rounded-lg transition-all duration-200 ${
                   isActive 
                     ? 'text-primary bg-primary/10' 

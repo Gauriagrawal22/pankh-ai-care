@@ -6,6 +6,7 @@ import { Badge } from '@/components/ui/badge';
 import Navigation from '@/components/Navigation';
 import MobileLayout from '@/components/MobileLayout';
 import BackButton from '@/components/BackButton';
+import { useNavigate } from 'react-router-dom';
 
 const Symptoms = () => {
   const navigate = useNavigate();

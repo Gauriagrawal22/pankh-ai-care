@@ -2,8 +2,9 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { ThemeProvider } from "@/components/ThemeProvider";
+import ProtectedRoute from "@/components/ProtectedRoute";
 import Index from "./pages/Index";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
@@ -31,23 +32,29 @@ const App = () => (
         <Sonner />
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<Index />} />
+            {/* Redirect root to login */}
+            <Route path="/" element={<Navigate to="/login" replace />} />
+            
+            {/* Public routes */}
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
-            <Route path="/dashboard" element={<Index />} />
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/notifications" element={<Notifications />} />
-            <Route path="/cycle-tracking" element={<CycleTracking />} />
-            <Route path="/symptoms" element={<Symptoms />} />
-            <Route path="/ai-insights" element={<AIInsights />} />
-            <Route path="/diet" element={<Diet />} />
-            <Route path="/mood-energy" element={<MoodEnergy />} />
-            <Route path="/wearables" element={<Wearables />} />
-            <Route path="/games" element={<Games />} />
-            <Route path="/reports" element={<Reports />} />
-            <Route path="/wellness" element={<Wellness />} />
-            <Route path="/settings" element={<Settings />} />
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+            
+            {/* Protected routes */}
+            <Route path="/dashboard" element={<ProtectedRoute><Index /></ProtectedRoute>} />
+            <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
+            <Route path="/notifications" element={<ProtectedRoute><Notifications /></ProtectedRoute>} />
+            <Route path="/cycle-tracking" element={<ProtectedRoute><CycleTracking /></ProtectedRoute>} />
+            <Route path="/symptoms" element={<ProtectedRoute><Symptoms /></ProtectedRoute>} />
+            <Route path="/ai-insights" element={<ProtectedRoute><AIInsights /></ProtectedRoute>} />
+            <Route path="/diet" element={<ProtectedRoute><Diet /></ProtectedRoute>} />
+            <Route path="/mood-energy" element={<ProtectedRoute><MoodEnergy /></ProtectedRoute>} />
+            <Route path="/wearables" element={<ProtectedRoute><Wearables /></ProtectedRoute>} />
+            <Route path="/games" element={<ProtectedRoute><Games /></ProtectedRoute>} />
+            <Route path="/reports" element={<ProtectedRoute><Reports /></ProtectedRoute>} />
+            <Route path="/wellness" element={<ProtectedRoute><Wellness /></ProtectedRoute>} />
+            <Route path="/settings" element={<ProtectedRoute><Settings /></ProtectedRoute>} />
+            
+            {/* 404 route */}
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>

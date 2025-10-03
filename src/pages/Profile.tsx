@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { User, Edit, Camera, Bell, Shield, Smartphone, Globe } from 'lucide-react';
+import { User, Edit, Camera, Bell, Shield, Smartphone, Globe, LogOut } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -8,8 +8,10 @@ import { Switch } from '@/components/ui/switch';
 import Navigation from '@/components/Navigation';
 import MobileLayout from '@/components/MobileLayout';
 import BackButton from '@/components/BackButton';
+import { useNavigate } from 'react-router-dom';
 
 const Profile = () => {
+  const navigate = useNavigate();
   const [isEditing, setIsEditing] = useState(false);
   const [profile, setProfile] = useState({
     name: 'Priya Sharma',
@@ -30,6 +32,11 @@ const Profile = () => {
   const handleSave = () => {
     setIsEditing(false);
     // Save to backend in real app
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem('isAuthenticated');
+    navigate('/login');
   };
 
   const DesktopProfile = () => (
@@ -196,6 +203,14 @@ const Profile = () => {
               </Button>
               <Button variant="outline" className="w-full justify-start">
                 Download My Data
+              </Button>
+              <Button 
+                variant="outline" 
+                className="w-full justify-start text-primary hover:text-primary hover:bg-primary/10"
+                onClick={handleLogout}
+              >
+                <LogOut className="w-4 h-4 mr-2" />
+                Logout
               </Button>
               <Button variant="destructive" className="w-full justify-start">
                 Delete Account

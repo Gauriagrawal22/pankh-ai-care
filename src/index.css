@@ -179,4 +179,58 @@
   .spin-wheel-animation {
     transition: transform 3000ms ease-out;
   }
+
+  /* Mobile Responsive Improvements */
+  @media (max-width: 768px) {
+    .pankhai-card {
+      @apply p-4;
+    }
+
+    .pankhai-metric-card {
+      @apply p-4;
+    }
+
+    .pankhai-chart-container {
+      @apply p-4 h-auto min-h-48;
+    }
+
+    h1 {
+      @apply text-xl;
+    }
+
+    h2 {
+      @apply text-lg;
+    }
+
+    h3 {
+      @apply text-base;
+    }
+
+    /* Ensure mobile sidebar scrolls properly */
+    .mobile-sidebar {
+      max-height: 100vh;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    /* Improve touch targets on mobile */
+    button, a {
+      min-height: 44px;
+      min-width: 44px;
+    }
+  }
+
+  /* Smooth slide-in animation for mobile sidebar */
+  @keyframes slideIn {
+    from {
+      transform: translateX(-100%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+
+  .slide-in {
+    animation: slideIn 0.3s ease-out;
+  }
 }

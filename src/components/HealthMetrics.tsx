@@ -1,11 +1,19 @@
-import React from 'react';
-import { TrendingUp, TrendingDown, Minus, Calendar, Droplets, Moon, Zap } from 'lucide-react';
+import React, { useState } from 'react';
+import { TrendingUp, TrendingDown, Minus, Calendar, Droplets, Moon, Zap, HelpCircle } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { useToast } from '@/hooks/use-toast';
 
 const HealthMetrics = () => {
   const navigate = useNavigate();
+  const { toast } = useToast();
+  const [hoveredMetric, setHoveredMetric] = useState<string | null>(null);
   
-  const handleMetricClick = (metricId: string) => {
+  const handleMetricClick = (metricId: string, e: React.MouseEvent) => {
+    // Prevent navigation if clicking the explain button
+    if ((e.target as HTMLElement).closest('.explain-button')) {
+      return;
+    }
+    
     switch (metricId) {
       case 'cycle':
         navigate('/cycle-tracking');
@@ -22,6 +30,14 @@ const HealthMetrics = () => {
       default:
         navigate('/dashboard');
     }
+  };
+  
+  const handleExplainClick = (metric: typeof metrics[0], e: React.MouseEvent) => {
+    e.stopPropagation();
+    toast({
+      title: "पंखAI is analyzing...",
+      description: `Explaining your ${metric.label} and providing recommendations`,
+    });
   };
   
   const metrics = [
@@ -88,10 +104,22 @@ const HealthMetrics = () => {
           return (
             <div
               key={metric.id}
-              onClick={() => handleMetricClick(metric.id)}
-              className={`pankhai-metric-card animate-fade-in-up cursor-pointer hover:scale-105 hover:shadow-lg transition-all duration-300`}
+              onClick={(e) => handleMetricClick(metric.id, e)}
+              onMouseEnter={() => setHoveredMetric(metric.id)}
+              onMouseLeave={() => setHoveredMetric(null)}
+              className={`pankhai-metric-card animate-fade-in-up cursor-pointer hover:scale-105 hover:shadow-lg transition-all duration-300 relative`}
               data-delay={index * 100}
             >
+              {/* Explain Button - Visible on hover (desktop) or always (mobile) */}
+              <button
+                onClick={(e) => handleExplainClick(metric, e)}
+                className={`explain-button absolute top-2 right-2 w-7 h-7 rounded-full bg-primary/10 hover:bg-primary/20 flex items-center justify-center transition-all duration-200 ${
+                  hoveredMetric === metric.id ? 'opacity-100 scale-100' : 'opacity-0 scale-90 md:opacity-0 md:scale-90'
+                } md:group-hover:opacity-100 md:group-hover:scale-100`}
+              >
+                <HelpCircle className="w-4 h-4 text-primary" />
+              </button>
+              
               <div className="flex items-start justify-between mb-4">
                 <div className={`w-12 h-12 rounded-xl ${metric.bg} flex items-center justify-center shadow-soft`}>
                   <Icon className="w-6 h-6 text-white" />

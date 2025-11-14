@@ -1,5 +1,5 @@
-import React from 'react';
-import { Calendar, Moon, Droplets, Activity, Bell, Plus } from 'lucide-react';
+import React, { useState } from 'react';
+import { Calendar, Plus, Sparkles } from 'lucide-react';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import Navigation from './Navigation';
@@ -11,10 +11,25 @@ import MobileLayout from './MobileLayout';
 import { ThemeToggle } from './ThemeToggle';
 import { AdaptiveLogo } from './AdaptiveLogo';
 import { useNavigate } from 'react-router-dom';
+import { useToast } from '@/hooks/use-toast';
 import heroImage from '@/assets/pankhai-hero.jpg';
+import QuickAIActions from './QuickAIActions';
 
 const Dashboard = () => {
   const navigate = useNavigate();
+  const { toast } = useToast();
+  
+  const handleSmartInsight = () => {
+    toast({
+      title: "Generating insights...",
+      description: "पंखAI is analyzing your daily health data",
+    });
+  };
+  
+  const handleAIAction = (prompt: string) => {
+    // This would trigger AI analysis
+    console.log('AI Action:', prompt);
+  };
   
   const DesktopDashboard = () => (
     <div className="min-h-screen bg-background">
@@ -38,10 +53,10 @@ const Dashboard = () => {
               size="sm" 
               variant="wellness"
               className="text-white hover:scale-105 transition-all duration-300"
-              onClick={() => navigate('/notifications')}
+              onClick={handleSmartInsight}
             >
-              <Bell className="w-4 h-4 mr-2" />
-              2 alerts
+              <Sparkles className="w-4 h-4 mr-2" />
+              Run Smart Insight
             </Button>
             <Button
               size="sm"
@@ -102,6 +117,9 @@ const Dashboard = () => {
         
         {/* Main Content */}
         <main className="flex-1 space-y-8">
+          {/* Quick AI Actions */}
+          <QuickAIActions onActionClick={handleAIAction} />
+          
           {/* Health Metrics */}
           <HealthMetrics />
           
@@ -110,15 +128,12 @@ const Dashboard = () => {
             <CycleChart />
             <Card className="pankhai-chart-container cursor-pointer hover:shadow-lg transition-shadow" onClick={() => navigate('/mood-energy')}>
               <div className="flex items-center justify-between mb-4">
-                <h3 className="text-lg font-semibold">Mood & Energy</h3>
-                <Button size="sm" variant="ghost" onClick={(e) => { e.stopPropagation(); navigate('/mood-energy'); }}>
-                  <Activity className="w-4 h-4" />
-                </Button>
+                <h3 className="text-lg font-semibold">Mood & Energy Tracking</h3>
               </div>
               <div className="flex items-center justify-center h-32 text-muted-foreground hover:text-foreground transition-colors">
                 <div className="text-center">
-                  <Moon className="w-12 h-12 mx-auto mb-2 text-pankhai-purple hover:scale-110 transition-transform" />
-                  <p>Tracking your wellness patterns</p>
+                  <Calendar className="w-12 h-12 mx-auto mb-2 text-pankhai-purple hover:scale-110 transition-transform" />
+                  <p>Track your daily wellness patterns</p>
                   <p className="text-xs mt-2 text-primary">Click to view details</p>
                 </div>
               </div>
@@ -152,17 +167,28 @@ const Dashboard = () => {
           <p className="text-white/90 text-sm mb-4">
             Cycle due in 3 days. Great energy today!
           </p>
-          <Button 
-            variant="hero" 
-            size="sm"
-            onClick={() => navigate('/symptoms')}
-          >
-            <Plus className="w-4 h-4 mr-2" />
-            Log Now
-          </Button>
+          <div className="flex gap-2 justify-center">
+            <Button 
+              variant="hero" 
+              size="sm"
+              onClick={() => navigate('/symptoms')}
+            >
+              <Plus className="w-4 h-4 mr-2" />
+              Log Now
+            </Button>
+            <Button 
+              variant="hero" 
+              size="sm"
+              onClick={handleSmartInsight}
+            >
+              <Sparkles className="w-4 h-4 mr-2" />
+              Insights
+            </Button>
+          </div>
         </div>
       </Card>
       
+      <QuickAIActions onActionClick={handleAIAction} />
       <HealthMetrics />
       <QuickActions />
       <CycleChart />

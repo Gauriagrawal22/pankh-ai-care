@@ -5,23 +5,53 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import Navigation from '@/components/Navigation';
 import MobileLayout from '@/components/MobileLayout';
-import BackButton from '@/components/BackButton';
+import PageHeader from '@/components/PageHeader';
+import QuickAIActions from '@/components/QuickAIActions';
+import AIChat from '@/components/AIChat';
+import { useToast } from '@/hooks/use-toast';
 
 const AIInsights = () => {
+  const { toast } = useToast();
+  const [isThinking, setIsThinking] = useState(false);
   const [chatMessages, setChatMessages] = useState([
     {
-      type: 'ai',
+      type: 'ai' as const,
       message: "Hello Priya! I've analyzed your recent data. Your cycle patterns show good regularity, but I noticed some fatigue during luteal phases. Would you like personalized recommendations?"
     },
     {
-      type: 'user',
+      type: 'user' as const,
       message: "Yes, I've been feeling more tired lately. What can I do?"
     },
     {
-      type: 'ai',
+      type: 'ai' as const,
       message: "Based on your cycle day 26 and recent symptoms, try these: 1) Increase iron-rich foods (spinach, lentils), 2) Gentle yoga in evenings, 3) Sleep 30 minutes earlier. Your energy typically improves after day 3 of your cycle."
     }
   ]);
+
+  const handleSendMessage = (message: string) => {
+    setChatMessages([...chatMessages, { type: 'user', message }]);
+    setIsThinking(true);
+    
+    // Simulate AI response
+    setTimeout(() => {
+      setChatMessages(prev => [...prev, {
+        type: 'ai',
+        message: "That's a great question! Based on your recent data, I'd recommend..."
+      }]);
+      setIsThinking(false);
+    }, 2000);
+  };
+  
+  const handleSmartInsight = () => {
+    toast({
+      title: "Generating insights...",
+      description: "पंखAI is analyzing your daily health data",
+    });
+  };
+  
+  const handleAIAction = (prompt: string) => {
+    handleSendMessage(prompt);
+  };
 
   const insights = [
     {
@@ -52,31 +82,22 @@ const AIInsights = () => {
 
   const DesktopAIInsights = () => (
     <div className="min-h-screen bg-background">
-      <header className="pankhai-card mx-6 mt-6 mb-8">
-        <div className="flex items-center justify-between p-6">
-          <div className="flex items-center gap-4">
-            <BackButton />
-            <div className="w-12 h-12 bg-gradient-primary rounded-xl flex items-center justify-center">
-              <Brain className="w-6 h-6 text-white" />
-            </div>
-            <div>
-              <h1 className="text-2xl font-bold bg-gradient-primary bg-clip-text text-transparent">
-                पंखAI
-              </h1>
-              <p className="text-sm text-muted-foreground">AI Insights</p>
-            </div>
-          </div>
-          <Button variant="wellness" size="sm">
+      <PageHeader 
+        title="AI Insights" 
+        icon={
+          <Button variant="wellness" size="sm" onClick={handleSmartInsight}>
             <Sparkles className="w-4 h-4 mr-2" />
-            Ask AI
+            Run Smart Insight
           </Button>
-        </div>
-      </header>
+        }
+      />
 
       <div className="flex gap-6 mx-6">
         <Navigation />
         
         <main className="flex-1 space-y-8">
+          <QuickAIActions onActionClick={handleAIAction} />
+          
           <Tabs defaultValue="insights" className="w-full">
             <TabsList className="grid w-full grid-cols-3">
               <TabsTrigger value="insights">Smart Insights</TabsTrigger>
@@ -133,45 +154,11 @@ const AIInsights = () => {
             </TabsContent>
 
             <TabsContent value="chat" className="space-y-6">
-              <Card className="pankhai-card">
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <MessageCircle className="w-5 h-5" />
-                    Chat with AI Health Assistant
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-4 h-96 overflow-y-auto mb-4">
-                    {chatMessages.map((message, index) => (
-                      <div
-                        key={index}
-                        className={`flex ${message.type === 'user' ? 'justify-end' : 'justify-start'}`}
-                      >
-                        <div
-                          className={`
-                            max-w-xs p-3 rounded-xl
-                            ${message.type === 'user' 
-                              ? 'bg-primary text-primary-foreground' 
-                              : 'bg-muted text-muted-foreground'
-                            }
-                          `}
-                        >
-                          {message.message}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                  
-                  <div className="flex gap-2">
-                    <input
-                      type="text"
-                      placeholder="Ask about your health patterns..."
-                      className="flex-1 pankhai-input"
-                    />
-                    <Button>Send</Button>
-                  </div>
-                </CardContent>
-              </Card>
+              <AIChat 
+                messages={chatMessages} 
+                onSendMessage={handleSendMessage}
+                isThinking={isThinking}
+              />
             </TabsContent>
 
             <TabsContent value="predictions" className="space-y-6">

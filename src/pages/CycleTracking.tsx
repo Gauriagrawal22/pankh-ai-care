@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import Navigation from '@/components/Navigation';
 import MobileLayout from '@/components/MobileLayout';
-import BackButton from '@/components/BackButton';
+import PageHeader from '@/components/PageHeader';
 
 const CycleTracking = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
@@ -41,26 +41,15 @@ const CycleTracking = () => {
 
   const DesktopCycleTracking = () => (
     <div className="min-h-screen bg-background">
-      <header className="pankhai-card mx-6 mt-6 mb-8">
-        <div className="flex items-center justify-between p-6">
-          <div className="flex items-center gap-4">
-            <BackButton />
-            <div className="w-12 h-12 bg-gradient-primary rounded-xl flex items-center justify-center">
-              <Calendar className="w-6 h-6 text-white" />
-            </div>
-            <div>
-              <h1 className="text-2xl font-bold bg-gradient-primary bg-clip-text text-transparent">
-                पंखAI
-              </h1>
-              <p className="text-sm text-muted-foreground">Cycle Tracking</p>
-            </div>
-          </div>
+      <PageHeader 
+        title="Cycle Tracking"
+        icon={
           <Button variant="wellness" size="sm">
             <Plus className="w-4 h-4 mr-2" />
             Log Period
           </Button>
-        </div>
-      </header>
+        }
+      />
 
       <div className="flex gap-6 mx-6">
         <Navigation />

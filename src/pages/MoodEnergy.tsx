@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { Heart, Smile, Frown, Meh, Battery, Sun, Moon } from 'lucide-react';
+import { Heart, Smile, Frown, Meh, Battery, Sun } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import BackButton from '@/components/BackButton';
+import PageHeader from '@/components/PageHeader';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Slider } from '@/components/ui/slider';
 import Navigation from '@/components/Navigation';
@@ -42,21 +42,7 @@ const MoodEnergy = () => {
 
   const DesktopMoodEnergy = () => (
     <div className="min-h-screen bg-background">
-      <header className="pankhai-card mx-6 mt-6 mb-8">
-        <div className="flex items-center justify-between p-6">
-          <div className="flex items-center gap-4">
-            <div className="w-12 h-12 bg-gradient-primary rounded-xl flex items-center justify-center">
-              <Heart className="w-6 h-6 text-white" />
-            </div>
-            <div>
-              <h1 className="text-2xl font-bold bg-gradient-primary bg-clip-text text-transparent">
-                पंखAI
-              </h1>
-              <p className="text-sm text-muted-foreground">Mood & Energy</p>
-            </div>
-          </div>
-        </div>
-      </header>
+      <PageHeader title="Mood & Energy Tracking" />
 
       <div className="flex gap-6 mx-6">
         <Navigation />

@@ -2,6 +2,7 @@ import React from 'react';
 import { Brain, Apple, Activity, Zap } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/hooks/use-toast';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 interface QuickAIActionsProps {
   onActionClick?: (prompt: string) => void;
@@ -9,6 +10,8 @@ interface QuickAIActionsProps {
 
 const QuickAIActions = ({ onActionClick }: QuickAIActionsProps) => {
   const { toast } = useToast();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const actions = [
     {
@@ -47,8 +50,13 @@ const QuickAIActions = ({ onActionClick }: QuickAIActionsProps) => {
       description: action.label,
     });
     
+    // If onActionClick is provided (we're already on AI Insights), use it
     if (onActionClick) {
       onActionClick(action.prompt);
+    } 
+    // Otherwise, navigate to AI Insights page with the prompt
+    else if (location.pathname !== '/ai-insights') {
+      navigate('/ai-insights', { state: { aiPrompt: action.prompt } });
     }
   };
 

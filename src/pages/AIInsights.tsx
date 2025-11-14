@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { TrendingUp, Brain, MessageCircle, Sparkles, Calendar, Activity } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -9,10 +9,13 @@ import PageHeader from '@/components/PageHeader';
 import QuickAIActions from '@/components/QuickAIActions';
 import AIChat from '@/components/AIChat';
 import { useToast } from '@/hooks/use-toast';
+import { useLocation } from 'react-router-dom';
 
 const AIInsights = () => {
   const { toast } = useToast();
+  const location = useLocation();
   const [isThinking, setIsThinking] = useState(false);
+  const [activeTab, setActiveTab] = useState('insights');
   const [chatMessages, setChatMessages] = useState([
     {
       type: 'ai' as const,
@@ -28,15 +31,39 @@ const AIInsights = () => {
     }
   ]);
 
+  // Handle incoming AI prompt from navigation
+  useEffect(() => {
+    const state = location.state as { aiPrompt?: string };
+    if (state?.aiPrompt) {
+      setActiveTab('chat');
+      handleSendMessage(state.aiPrompt);
+      // Clear the state to prevent re-triggering
+      window.history.replaceState({}, document.title);
+    }
+  }, [location]);
+
   const handleSendMessage = (message: string) => {
     setChatMessages([...chatMessages, { type: 'user', message }]);
     setIsThinking(true);
     
-    // Simulate AI response
+    // Generate context-aware AI responses based on the message
     setTimeout(() => {
+      let aiResponse = "That's a great question! Based on your recent data, I'd recommend...";
+      
+      // Check for specific prompts and provide tailored responses
+      if (message.toLowerCase().includes('analyze my health data') || message.toLowerCase().includes('analyze my day')) {
+        aiResponse = "📊 Based on today's analysis:\n\n✅ Cycle Day: 26 (Luteal Phase)\n✅ Mood: Stable\n⚠️ Energy: Below average (60%)\n✅ Sleep: 7.5 hours (Good)\n\n💡 Recommendations:\n• Your energy dip is normal for this cycle phase\n• Consider light exercise like yoga\n• Increase iron-rich foods (spinach, lentils)\n• Stay hydrated - aim for 8 glasses today";
+      } else if (message.toLowerCase().includes('nutrition plan') || message.toLowerCase().includes('diet')) {
+        aiResponse = "🍎 Personalized Nutrition Plan for Your Luteal Phase:\n\n**Breakfast:**\n• Oatmeal with berries and flaxseeds\n• Green tea\n\n**Lunch:**\n• Grilled chicken with quinoa and roasted vegetables\n• Side salad with olive oil dressing\n\n**Snacks:**\n• Handful of almonds\n• Dark chocolate (70%+ cocoa)\n\n**Dinner:**\n• Salmon with sweet potato and steamed broccoli\n\n💡 Focus: High in magnesium, B6, and omega-3s to support hormonal balance during this phase.";
+      } else if (message.toLowerCase().includes('hormonal balance') || message.toLowerCase().includes('hormone')) {
+        aiResponse = "🔬 Hormonal Balance Analysis:\n\n**Current Status:**\n• Progesterone: Elevated (Normal for luteal phase)\n• Estrogen: Declining (Expected)\n• Cortisol: Slightly elevated\n\n**Symptoms Correlation:**\n• Mild fatigue → Related to progesterone increase\n• Slight mood changes → Within normal range\n• Energy fluctuation → Typical for cycle day 26\n\n✅ Overall Assessment: Your hormonal patterns are healthy!\n\n💡 Suggestions:\n• Practice stress reduction (meditation, deep breathing)\n• Maintain regular sleep schedule\n• Reduce caffeine intake";
+      } else if (message.toLowerCase().includes('energy low') || message.toLowerCase().includes('tired') || message.toLowerCase().includes('fatigue')) {
+        aiResponse = "⚡ Energy Analysis:\n\n**Why your energy is low today:**\n\n1. **Cycle Phase Impact (40%)**: Day 26 of luteal phase - progesterone peaks naturally lower energy\n\n2. **Sleep Quality (25%)**: Last night's deep sleep was only 1.2 hours (below your 1.8hr average)\n\n3. **Nutrition Gap (20%)**: Low iron intake yesterday (only 60% of RDA)\n\n4. **Activity Level (15%)**: Below-average movement past 2 days\n\n**Quick Fixes:**\n✅ Take a 20-min power nap\n✅ Have iron-rich snack (spinach smoothie)\n✅ 10-min walk outside for natural light\n✅ Stay hydrated (you're at 40% of daily goal)\n\n💪 Energy should improve after day 3 of your next cycle!";
+      }
+      
       setChatMessages(prev => [...prev, {
         type: 'ai',
-        message: "That's a great question! Based on your recent data, I'd recommend..."
+        message: aiResponse
       }]);
       setIsThinking(false);
     }, 2000);
@@ -98,7 +125,7 @@ const AIInsights = () => {
         <main className="flex-1 space-y-8">
           <QuickAIActions onActionClick={handleAIAction} />
           
-          <Tabs defaultValue="insights" className="w-full">
+          <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
             <TabsList className="grid w-full grid-cols-3">
               <TabsTrigger value="insights">Smart Insights</TabsTrigger>
               <TabsTrigger value="chat">AI Chat</TabsTrigger>
@@ -253,7 +280,7 @@ const AIInsights = () => {
             Your fatigue patterns suggest you need more iron. Try spinach and lentils today!
           </div>
         </div>
-        <Button className="w-full" variant="outline">
+        <Button className="w-full" variant="outline" onClick={() => setActiveTab('chat')}>
           <MessageCircle className="w-4 h-4 mr-2" />
           Chat with AI
         </Button>

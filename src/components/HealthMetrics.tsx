@@ -38,6 +38,28 @@ const HealthMetrics = () => {
       title: "पंखAI is analyzing...",
       description: `Explaining your ${metric.label} and providing recommendations`,
     });
+    
+    // Create prompt based on metric
+    let prompt = '';
+    switch (metric.id) {
+      case 'cycle':
+        prompt = `I am on cycle day ${metric.value}. What should I expect and how can I optimize my health during this phase?`;
+        break;
+      case 'flow':
+        prompt = `My flow intensity is ${metric.value}. What does this mean and is this normal?`;
+        break;
+      case 'sleep':
+        prompt = `I got ${metric.value} hours of sleep. How is this affecting my health and cycle?`;
+        break;
+      case 'energy':
+        prompt = `My energy level is ${metric.value}. Why am I feeling this way and what can I do to improve it?`;
+        break;
+      default:
+        prompt = `Explain my ${metric.label} metric and provide personalized recommendations.`;
+    }
+    
+    // Navigate to AI Insights with the prompt
+    navigate('/ai-insights', { state: { aiPrompt: prompt } });
   };
   
   const metrics = [

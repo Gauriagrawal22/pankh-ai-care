@@ -42,37 +42,69 @@ const AIInsights = () => {
     }
   }, [location]);
 
-  const handleSendMessage = (message: string) => {
+  // Send message to backend agent
+  const sendMessageToAgent = async (message: string): Promise<string> => {
+    try {
+      const response = await fetch("http://localhost:5000/api/agent", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message })
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      return data.reply || "Sorry, I couldn't process that request.";
+    } catch (error) {
+      console.error("Error communicating with agent:", error);
+      toast({
+        title: "Connection Error",
+        description: "Unable to reach the AI agent. Please check if the backend is running on port 5000.",
+        variant: "destructive"
+      });
+      return "Sorry, I'm having trouble connecting to the AI service. Please try again later.";
+    }
+  };
+
+  const handleSendMessage = async (message: string) => {
     setChatMessages([...chatMessages, { type: 'user', message }]);
     setIsThinking(true);
     
-    // Generate context-aware AI responses based on the message
-    setTimeout(() => {
-      let aiResponse = "That's a great question! Based on your recent data, I'd recommend...";
-      
-      // Check for specific prompts and provide tailored responses
-      if (message.toLowerCase().includes('analyze my health data') || message.toLowerCase().includes('analyze my day')) {
-        aiResponse = "📊 Based on today's analysis:\n\n✅ Cycle Day: 26 (Luteal Phase)\n✅ Mood: Stable\n⚠️ Energy: Below average (60%)\n✅ Sleep: 7.5 hours (Good)\n\n💡 Recommendations:\n• Your energy dip is normal for this cycle phase\n• Consider light exercise like yoga\n• Increase iron-rich foods (spinach, lentils)\n• Stay hydrated - aim for 8 glasses today";
-      } else if (message.toLowerCase().includes('nutrition plan') || message.toLowerCase().includes('diet')) {
-        aiResponse = "🍎 Personalized Nutrition Plan for Your Luteal Phase:\n\n**Breakfast:**\n• Oatmeal with berries and flaxseeds\n• Green tea\n\n**Lunch:**\n• Grilled chicken with quinoa and roasted vegetables\n• Side salad with olive oil dressing\n\n**Snacks:**\n• Handful of almonds\n• Dark chocolate (70%+ cocoa)\n\n**Dinner:**\n• Salmon with sweet potato and steamed broccoli\n\n💡 Focus: High in magnesium, B6, and omega-3s to support hormonal balance during this phase.";
-      } else if (message.toLowerCase().includes('hormonal balance') || message.toLowerCase().includes('hormone')) {
-        aiResponse = "🔬 Hormonal Balance Analysis:\n\n**Current Status:**\n• Progesterone: Elevated (Normal for luteal phase)\n• Estrogen: Declining (Expected)\n• Cortisol: Slightly elevated\n\n**Symptoms Correlation:**\n• Mild fatigue → Related to progesterone increase\n• Slight mood changes → Within normal range\n• Energy fluctuation → Typical for cycle day 26\n\n✅ Overall Assessment: Your hormonal patterns are healthy!\n\n💡 Suggestions:\n• Practice stress reduction (meditation, deep breathing)\n• Maintain regular sleep schedule\n• Reduce caffeine intake";
-      } else if (message.toLowerCase().includes('energy low') || message.toLowerCase().includes('tired') || message.toLowerCase().includes('fatigue')) {
-        aiResponse = "⚡ Energy Analysis:\n\n**Why your energy is low today:**\n\n1. **Cycle Phase Impact (40%)**: Day 26 of luteal phase - progesterone peaks naturally lower energy\n\n2. **Sleep Quality (25%)**: Last night's deep sleep was only 1.2 hours (below your 1.8hr average)\n\n3. **Nutrition Gap (20%)**: Low iron intake yesterday (only 60% of RDA)\n\n4. **Activity Level (15%)**: Below-average movement past 2 days\n\n**Quick Fixes:**\n✅ Take a 20-min power nap\n✅ Have iron-rich snack (spinach smoothie)\n✅ 10-min walk outside for natural light\n✅ Stay hydrated (you're at 40% of daily goal)\n\n💪 Energy should improve after day 3 of your next cycle!";
-      }
-      
-      setChatMessages(prev => [...prev, {
-        type: 'ai',
-        message: aiResponse
-      }]);
-      setIsThinking(false);
-    }, 2000);
+    // Call the real backend API
+    const aiResponse = await sendMessageToAgent(message);
+    
+    setChatMessages(prev => [...prev, {
+      type: 'ai',
+      message: aiResponse
+    }]);
+    setIsThinking(false);
   };
   
-  const handleSmartInsight = () => {
+  const handleSmartInsight = async () => {
+    setIsThinking(true);
     toast({
       title: "Generating insights...",
       description: "पंखAI is analyzing your daily health data",
+    });
+
+    // Example data - in production, fetch from user's actual data
+    const message = "I am getting 6 hours of sleep with moderate stress, in my luteal phase, and I have headaches and mood swings";
+    
+    const aiResponse = await sendMessageToAgent(message);
+    
+    setChatMessages(prev => [...prev, {
+      type: 'ai',
+      message: aiResponse
+    }]);
+    
+    setActiveTab('chat');
+    setIsThinking(false);
+    
+    toast({
+      title: "Insights Generated!",
+      description: "Check the AI Chat tab for your personalized analysis",
     });
   };
   

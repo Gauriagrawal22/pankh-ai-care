@@ -24,11 +24,17 @@ const Dashboard = () => {
       title: "Generating insights...",
       description: "पंखAI is analyzing your daily health data",
     });
+    // Navigate to AI Insights page and trigger smart insight
+    navigate('/ai-insights', { 
+      state: { 
+        aiPrompt: "I am getting 6 hours of sleep with moderate stress, in my luteal phase, and I have headaches and mood swings" 
+      } 
+    });
   };
   
   const handleAIAction = (prompt: string) => {
-    // This would trigger AI analysis
-    console.log('AI Action:', prompt);
+    // Navigate to AI Insights with the prompt
+    navigate('/ai-insights', { state: { aiPrompt: prompt } });
   };
   
   const DesktopDashboard = () => (

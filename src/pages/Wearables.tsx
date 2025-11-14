@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import Navigation from '@/components/Navigation';
 import MobileLayout from '@/components/MobileLayout';
+import PageHeader from '@/components/PageHeader';
 
 const Wearables = () => {
   const [connectedDevices, setConnectedDevices] = useState([
@@ -62,21 +63,7 @@ const Wearables = () => {
 
   const DesktopWearables = () => (
     <div className="min-h-screen bg-background">
-      <header className="pankhai-card mx-6 mt-6 mb-8">
-        <div className="flex items-center justify-between p-6">
-          <div className="flex items-center gap-4">
-            <div className="w-12 h-12 bg-gradient-primary rounded-xl flex items-center justify-center">
-              <Watch className="w-6 h-6 text-white" />
-            </div>
-            <div>
-              <h1 className="text-2xl font-bold bg-gradient-primary bg-clip-text text-transparent">
-                पंखAI
-              </h1>
-              <p className="text-sm text-muted-foreground">Wearable Devices</p>
-            </div>
-          </div>
-        </div>
-      </header>
+      <PageHeader title="Wearable Devices" />
 
       <div className="flex gap-6 mx-6">
         <Navigation />

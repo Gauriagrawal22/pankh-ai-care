@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import Navigation from '@/components/Navigation';
 import MobileLayout from '@/components/MobileLayout';
-import BackButton from '@/components/BackButton';
+import PageHeader from '@/components/PageHeader';
 import { useNavigate } from 'react-router-dom';
 
 const Symptoms = () => {
@@ -47,26 +47,15 @@ const Symptoms = () => {
 
   const DesktopSymptoms = () => (
     <div className="min-h-screen bg-background">
-      <header className="pankhai-card mx-6 mt-6 mb-8">
-        <div className="flex items-center justify-between p-6">
-          <div className="flex items-center gap-4">
-            <BackButton />
-            <div className="w-12 h-12 bg-gradient-primary rounded-xl flex items-center justify-center">
-              <Activity className="w-6 h-6 text-white" />
-            </div>
-            <div>
-              <h1 className="text-2xl font-bold bg-gradient-primary bg-clip-text text-transparent">
-                पंखAI
-              </h1>
-              <p className="text-sm text-muted-foreground">Symptom Tracking</p>
-            </div>
-          </div>
-          <Button variant="wellness" size="sm">
-            <Plus className="w-4 h-4 mr-2" />
-            Log Symptoms
+      <PageHeader 
+        title="Symptom Tracking" 
+        icon={
+          <Button variant="wellness" size="sm" onClick={() => navigate('/ai-insights')}>
+            <TrendingUp className="w-4 h-4 mr-2" />
+            View AI Insights
           </Button>
-        </div>
-      </header>
+        }
+      />
 
       <div className="flex gap-6 mx-6">
         <Navigation />
@@ -165,9 +154,6 @@ const Symptoms = () => {
 
   const MobileSymptoms = () => (
     <div className="p-4 space-y-6">
-      <div className="mb-4">
-        <BackButton />
-      </div>
       <Card className="pankhai-card p-4">
         <h3 className="font-semibold mb-4">Quick Log</h3>
         <div className="grid grid-cols-2 gap-2">

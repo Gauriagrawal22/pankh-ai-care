@@ -3,21 +3,20 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Heart, Activity, Brain, Moon, Droplets, Target } from 'lucide-react';
 import Navigation from '@/components/Navigation';
+import PageHeader from '@/components/PageHeader';
+import MobileLayout from '@/components/MobileLayout';
 
 const Wellness = () => {
   return (
-    <div className="min-h-screen bg-gradient-subtle">
-      <div className="flex">
-        <Navigation />
-        
-        <main className="flex-1 p-6">
-          <div className="max-w-6xl mx-auto">
-            <div className="mb-8">
-              <h1 className="text-3xl font-bold text-foreground mb-2">💖 Wellness Hub</h1>
-              <p className="text-muted-foreground">
-                Your complete wellness dashboard for mind, body, and spirit
-              </p>
-            </div>
+    <>
+      <div className="hidden md:block">
+        <div className="min-h-screen bg-background">
+          <PageHeader title="Wellness Hub" showBackButton={false} />
+          <div className="flex">
+            <Navigation />
+            
+            <main className="flex-1 p-6">
+              <div className="max-w-6xl mx-auto">
 
             {/* Wellness Score */}
             <Card className="pankhai-card mb-8">
@@ -185,6 +184,18 @@ const Wellness = () => {
         </main>
       </div>
     </div>
+  </div>
+  
+  <div className="md:hidden">
+    <MobileLayout>
+      <div className="p-4">
+        <h1 className="text-2xl font-bold mb-4">💖 Wellness Hub</h1>
+        <p className="text-sm text-muted-foreground mb-6">Your wellness dashboard</p>
+        {/* Mobile wellness content would go here */}
+      </div>
+    </MobileLayout>
+  </div>
+</>
   );
 };
 

@@ -4,6 +4,8 @@ import { Button } from '@/components/ui/button';
 import { Switch } from '@/components/ui/switch';
 import { Settings as SettingsIcon, Bell, Shield, Globe, User, Moon, Sun } from 'lucide-react';
 import Navigation from '@/components/Navigation';
+import PageHeader from '@/components/PageHeader';
+import MobileLayout from '@/components/MobileLayout';
 
 const Settings = () => {
   const [notifications, setNotifications] = useState({
@@ -22,18 +24,15 @@ const Settings = () => {
   const [darkMode, setDarkMode] = useState(false);
 
   return (
-    <div className="min-h-screen bg-gradient-subtle">
-      <div className="flex">
-        <Navigation />
-        
-        <main className="flex-1 p-6">
-          <div className="max-w-4xl mx-auto">
-            <div className="mb-8">
-              <h1 className="text-3xl font-bold text-foreground mb-2">⚙️ Settings</h1>
-              <p className="text-muted-foreground">
-                Customize your PankhAI experience
-              </p>
-            </div>
+    <>
+      <div className="hidden md:block">
+        <div className="min-h-screen bg-background">
+          <PageHeader title="Settings" showBackButton={false} />
+          <div className="flex">
+            <Navigation />
+            
+            <main className="flex-1 p-6">
+              <div className="max-w-4xl mx-auto">
 
             <div className="space-y-6">
               {/* Profile Settings */}
@@ -212,6 +211,16 @@ const Settings = () => {
         </main>
       </div>
     </div>
+  </div>
+  
+  <div className="md:hidden">
+    <MobileLayout>
+      <div className="p-4">
+        <h1 className="text-xl font-bold mb-4">⚙️ Settings</h1>
+      </div>
+    </MobileLayout>
+  </div>
+</>
   );
 };
 

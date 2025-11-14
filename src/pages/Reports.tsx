@@ -3,21 +3,20 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { FileText, Download, Calendar, TrendingUp, BarChart3 } from 'lucide-react';
 import Navigation from '@/components/Navigation';
+import PageHeader from '@/components/PageHeader';
+import MobileLayout from '@/components/MobileLayout';
 
 const Reports = () => {
   return (
-    <div className="min-h-screen bg-gradient-subtle">
-      <div className="flex">
-        <Navigation />
-        
-        <main className="flex-1 p-6">
-          <div className="max-w-6xl mx-auto">
-            <div className="mb-8">
-              <h1 className="text-3xl font-bold text-foreground mb-2">📊 Health Reports</h1>
-              <p className="text-muted-foreground">
-                View and download comprehensive reports about your health journey
-              </p>
-            </div>
+    <>
+      <div className="hidden md:block">
+        <div className="min-h-screen bg-background">
+          <PageHeader title="Health Reports" showBackButton={false} />
+          <div className="flex">
+            <Navigation />
+            
+            <main className="flex-1 p-6">
+              <div className="max-w-6xl mx-auto">
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
               {/* Cycle Report */}
@@ -120,6 +119,16 @@ const Reports = () => {
         </main>
       </div>
     </div>
+  </div>
+  
+  <div className="md:hidden">
+    <MobileLayout>
+      <div className="p-4">
+        <h1 className="text-xl font-bold mb-4">📊 Reports</h1>
+      </div>
+    </MobileLayout>
+  </div>
+</>
   );
 };
 

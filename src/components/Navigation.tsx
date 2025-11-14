@@ -2,12 +2,14 @@ import React, { useState } from 'react';
 import { Home, Calendar, Activity, FileText, Settings, TrendingUp, Heart, Apple, Smile, Watch, Globe } from 'lucide-react';
 import { Card } from '@/components/ui/card';
 import { ThemeToggle } from './ThemeToggle';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const Navigation = () => {
-  const [activeItem, setActiveItem] = useState('dashboard');
   const [language, setLanguage] = useState('english');
   const navigate = useNavigate();
+  const location = useLocation();
+  
+  const isActive = (path: string) => location.pathname === path;
 
   const navItems = [
     { id: 'dashboard', label: 'Dashboard', icon: Home, path: '/dashboard' },
@@ -29,17 +31,16 @@ const Navigation = () => {
         <nav className="space-y-2">
           {navItems.map((item) => {
             const Icon = item.icon;
-            const isActive = activeItem === item.id;
+            const active = isActive(item.path);
             
             return (
               <button
                 key={item.id}
                 onClick={() => {
-                  setActiveItem(item.id);
                   if (item.path) navigate(item.path);
                 }}
                 className={`pankhai-nav-item w-full text-left ${
-                  isActive ? 'active' : ''
+                  active ? 'active' : ''
                 }`}
               >
                 <Icon className="w-5 h-5" />
